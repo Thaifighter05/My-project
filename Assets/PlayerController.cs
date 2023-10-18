@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float groundRadius = 0.2f;
 
+    [SerializeField]
+    GameObject bulletPrefab;
+
+    [SerializeField]
+    Transform shotPosition;
     void Awake()
     {
         rBody = GetComponent<Rigidbody2D>();
@@ -51,6 +56,12 @@ public class PlayerController : MonoBehaviour
         {
         hasReleasedJumpButton = true;
         }
+        if (Input.GetAxisRaw("Fire1")> 0)
+        {
+        Instantiate(bulletPrefab, shotPosition.position, Quaternion.identity);
+
+        }
+        
     }
 
     private void OnDrawGizmos()
