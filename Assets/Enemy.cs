@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        float x = Random.Range(-5f, 5f);
-        Vector2 pos = new Vector2(x, Camera.main.orthographicSize + 1);
+        float y = Random.Range(-5f, 5f);
+        Vector2 pos = new Vector2(Camera.main.orthographicSize + 1, y);
 
         transform.position = pos;
     }
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
         transform.Translate(movement);
 
-        if (transform.position.x < -Camera.main.orthographicSize - 1)
+        if (transform.position.x < -Camera.main.orthographicSize - 5)
         {
             GameObject.Destroy(this.gameObject);
         }

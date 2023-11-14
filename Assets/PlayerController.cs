@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     Transform shotPosition;
+
+    float shotTimer = 0;
+    [SerializeField]
+    float TimeBetweenShots = 0.5f;
     void Awake()
     {
         rBody = GetComponent<Rigidbody2D>();
@@ -56,10 +60,13 @@ public class PlayerController : MonoBehaviour
         {
         hasReleasedJumpButton = true;
         }
-        if (Input.GetAxisRaw("Fire1")> 0)
+
+        shotTimer += Time.deltaTime;
+
+        if (Input.GetAxisRaw("Fire1")> 0  && shotTimer > TimeBetweenShots)
         {
         Instantiate(bulletPrefab, shotPosition.position, Quaternion.identity);
-
+        shotTimer = 0;
         }
         
     }
