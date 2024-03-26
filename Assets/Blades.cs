@@ -5,6 +5,7 @@ using UnityEngine;
     
 public class Blades : MonoBehaviour
 {
+
     [SerializeField]
     float rotateSpeed;
 
@@ -16,22 +17,18 @@ public class Blades : MonoBehaviour
     [SerializeField]
     Transform pos2;
     bool turnback;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
         transform.Rotate(0,0,rotateSpeed);
-        if (transform.position.y >= pos1.position.x)
+        if (transform.position.y >= pos1.position.y) 
         {
             turnback = true;
         }
 
-        if (transform.position.y <= pos2.position.x)
+        if (transform.position.y <= pos2.position.y)
         {
             turnback = false;
         }

@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform shotPosition;
 
+    
+
     float shotTimer = 0;
     [SerializeField]
     float TimeBetweenShots = 0.5f;
