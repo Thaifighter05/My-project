@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     Transform shotPosition;
-
+    bool isGrounded;
     
 
     float shotTimer = 0;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(movement);
 
-        bool isGrounded = Physics2D.OverlapCircle(feet.position, groundRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(feet.position, groundRadius, groundLayer);
 
         Debug.Log(isGrounded);
         if(Input.GetAxisRaw("Jump") > 0 && hasReleasedJumpButton == true && isGrounded)
@@ -86,12 +86,18 @@ public class PlayerController : MonoBehaviour
         if(Collision.gameObject.tag == "tramp" &&  IsGrounded == false
             )
         {
-            upSpeed += 300f;
-            if (upSpeed>= 1400f)
+            upSpeed += 400f;
+            if (upSpeed>= 1200f)
             {
-                upSpeed = 1400f;
+                upSpeed = 1200f;
             }
             rBody.AddForce(new Vector2(0,upSpeed));
+        }
+
+        if(Collision.gameObject.tag == "Blade")
+        {
+            Destroy(this.gameObject);
+
         }
     }
     private void OnDrawGizmos()
