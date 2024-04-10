@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,9 @@ public class PlayerController : MonoBehaviour
     float shotTimer = 0;
     [SerializeField]
     float TimeBetweenShots = 0.5f;
+
+    bool IsGrounded;
+    float upSpeed;
     void Awake()
     {
         rBody = GetComponent<Rigidbody2D>();
@@ -40,6 +44,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(IsGrounded)
+        {
+            upSpeed = 500f;
+        }
         // Debug.DrawLine(Vector2.zero, Vector2.down * 8, Color.green);
 
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -73,6 +81,19 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    void OnCollisionEnter2D(Collision2D Collision)
+    {
+        if(Collision.gameObject.tag == "tramp" &&  IsGrounded == false
+            )
+        {
+            upSpeed += 300f;
+            if (upSpeed>= 1400f)
+            {
+                upSpeed = 1400f;
+            }
+            rBody.AddForce(new Vector2(0,upSpeed));
+        }
+    }
     private void OnDrawGizmos()
     {
         // Gizmos.color = Color.green;

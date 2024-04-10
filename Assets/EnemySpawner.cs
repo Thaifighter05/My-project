@@ -4,25 +4,25 @@ using System.Threading;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
-{
-   [SerializeField]
-   GameObject enemyPrefab;
+// public class EnemySpawner : MonoBehaviour
+// {
+//    [SerializeField]
+//    GameObject enemyPrefab;
    
-    float Timer = 0;
+//     float Timer = 0;
     
-    [SerializeField]
-    float TimeBetweenEnemies = 1.5f;
+//     [SerializeField]
+//     float TimeBetweenEnemies = 1.5f;
 
-    // Update is called once per frame
-    void Update()
-    {      
-        Timer += Time.deltaTime;
-        if (Timer > TimeBetweenEnemies)
-        {
-        Instantiate(enemyPrefab);
-        Timer = 0; 
-        }
+//     // Update is called once per frame
+//     void Update()
+//     {      
+//         Timer += Time.deltaTime;
+//         if (Timer > TimeBetweenEnemies)
+//         {
+//         Instantiate(enemyPrefab);
+//         Timer = 0; 
+//         }
         
-    }
-}
+//     }
+// }
