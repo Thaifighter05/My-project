@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - tramp
+  - Blade
   layers:
   - Default
   - TransparentFX

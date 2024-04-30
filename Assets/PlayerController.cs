@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class PlayerController : MonoBehaviour
     float jumpForce = 3000;
     Rigidbody2D rBody;
     bool hasReleasedJumpButton = true;
+    
     
     [SerializeField]
     Transform feet;
@@ -29,6 +33,9 @@ public class PlayerController : MonoBehaviour
     Transform shotPosition;
     bool isGrounded;
     
+    [SerializeField]
+    float dashspeed;
+    
 
     float shotTimer = 0;
     [SerializeField]
@@ -44,6 +51,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if(IsGrounded)
         {
             upSpeed = 500f;
@@ -78,6 +86,11 @@ public class PlayerController : MonoBehaviour
         Instantiate(bulletPrefab, shotPosition.position, Quaternion.identity);
         shotTimer = 0;
         }
+
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            // rBody.AddForce(Vector2.x * dashspeed);
+        }
         
     }
 
@@ -98,6 +111,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
 
+        }
+
+        if(Collision.gameObject.tag == "DeathPoint")
+        {
+            transform.position = new Vector3(-7.6f, 0.8f, 0f);
         }
     }
     private void OnDrawGizmos()
